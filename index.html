@@ -9,17 +9,32 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="container">
+    <header role = "banner">
         <h1>Display Pokemon</h1>
-
-        <form>
-          <label> Choose a pokemon:
-            <input id="pokemon-search" type="text"/>
-            <button type="submit">Submit</button>
-          </label>
-        </form>
-        <div class="results hidden"></div>
-    </div>
+        <h3>Choose a Pokemon and see the stats</h3>
+    </header>
+    <main role = "main">
+        <div class="container">       
+            <form>
+                <label> Choose a pokemon:
+                <input id="pokemon-search" type="text"/>
+                <button type="submit">Submit</button>
+                </label>
+            </form>
+            <div class="results hidden">
+                <div class="row name">
+                </div>
+                <div class="row">
+                    <div class="col-6 abilities"></div>
+                    <div class="col-6 moves"></div>
+                </div>
+                <div class="row">
+                    <div class="col-6"></div>
+                    <div class="col-6"></div>
+                </div>
+            </div>
+        </div>     
+    </main>
     <script src="index.js"></script>
 </body>
 </html>

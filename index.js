@@ -19,16 +19,20 @@ function handleErrors(response) {
 
 function displayResults(responseJson) {
   console.log(responseJson);
-  $('.results').append(`<h3>Abilities</h3>`
+  //CHANGE THIS BEFORE SUBMITTING
+  $('.col-6').empty();
+  $('.name').empty();
+  $('div.name').append(`<h2>${responseJson.name}</h2>`);
+  $('div.abilities').append(`<h3>Abilities</h3>`
   );
     for(let i=0; i<responseJson.abilities.length; i++){
-        $('.results').append(`<p>${responseJson.abilities[i].ability.name}</p>`
+        $('div.abilities').append(`<p>${responseJson.abilities[i].ability.name}</p>`
         );
       }
-      $('.results').append(`<h3>Moves</h3>`
+      $('div.moves').append(`<h3>Moves</h3>`
       );
       for(let i=0; i<responseJson.moves.length; i++){
-        $('.results').append(`<p>${responseJson.moves[i].move.name}</p>`
+        $('div.moves').append(`<p>${responseJson.moves[i].move.name}</p>`
         );
       }
   //display the results section
@@ -39,7 +43,6 @@ function watchForm() {
   $('form').submit(event => {
     let pokemon = $('#pokemon-search').val();
     event.preventDefault();
-    $('.results').empty();
     getPokemon(pokemon);
      $('#pokemon-search, textarea').val('');
   });
