@@ -39,14 +39,14 @@ body {
   clear: both;
 }
 
-.col-6 {
+.col-3, .col-6 {
   float: left;
   padding-left: 1.04166666%;
   padding-right: 1.04166666%;
 }
 
 /* Mobile defaults */
-.col-6 {
+.col-3, .col-6 {
   width: 100%;
   margin-bottom: 20px;
 }
@@ -54,6 +54,9 @@ body {
 @media only screen and (min-width: 640px) {
   .col-6 {
     width: 50%;
+  }
+  .col-3 {
+    width: 25%;
   }
 }
 
@@ -67,4 +70,8 @@ body {
 
 .name{
   text-align: center;
+}
+
+.box{
+  padding: 1.04166666%;
 }

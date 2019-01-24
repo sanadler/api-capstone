@@ -1,11 +1,20 @@
 'use strict';
 
-function getPokemon(pokemon) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`)
+function getPokemon() {
+  fetch(`https://pokeapi.co/api/v2/pokemon/`)
     .then(handleErrors)
     .then(response => response.json())
     .then(responseJson => 
-      displayResults(responseJson))
+      homepage(responseJson))
+    .catch(error => alert(error));
+}
+
+function getSpecificPokemon(pokemon) {
+  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+    .then(handleErrors)
+    .then(response => response.json())
+    .then(responseJson => 
+      displayPokemon(responseJson))
     .catch(error => alert(error));
 }
 
@@ -17,35 +26,36 @@ function handleErrors(response) {
 }
 
 
-function displayResults(responseJson) {
+function homepage(responseJson) {
   console.log(responseJson);
-  //CHANGE THIS BEFORE SUBMITTING
-  $('.col-6').empty();
-  $('.name').empty();
-  $('div.name').append(`<h2>${responseJson.name}</h2>`);
-  $('div.abilities').append(`<h3>Abilities</h3>`
-  );
-    for(let i=0; i<responseJson.abilities.length; i++){
-        $('div.abilities').append(`<p>${responseJson.abilities[i].ability.name}</p>`
-        );
-      }
-      $('div.moves').append(`<h3>Moves</h3>`
-      );
-      for(let i=0; i<responseJson.moves.length; i++){
-        $('div.moves').append(`<p>${responseJson.moves[i].move.name}</p>`
-        );
-      }
+  let poke = responseJson.results;
+  for (let i=0; i < poke.length; i++){
+    $('.row').append(`<div class="col-3">
+      <div class="box"><button type="button" name="${poke[i].name}">${poke[i].name}</button></div>
+    </div>`);
+  }
   //display the results section
   $('.results').removeClass('hidden');
-}
-
-function watchForm() {
-  $('form').submit(event => {
-    let pokemon = $('#pokemon-search').val();
-    event.preventDefault();
-    getPokemon(pokemon);
-     $('#pokemon-search, textarea').val('');
+  $('button').click(function(){
+    let pokemon = $(this).attr('name');
+    getSpecificPokemon(pokemon);
   });
 }
 
-$(watchForm);
+function displayPokemon(responseJson){
+  console.log(responseJson);
+  $('.row').empty();
+  $('.row').append(`<p>${responseJson.name}</p>`);
+}
+
+// function watchForm() {
+//   $('form').submit(event => {
+//     let pokemon = $('#pokemon-search').val();
+//     event.preventDefault();
+//     getPokemon(pokemon);
+//      $('#pokemon-search, textarea').val('');
+//   });
+// }
+
+
+$(getPokemon);
