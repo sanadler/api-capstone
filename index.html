@@ -12,19 +12,20 @@
     <header role = "banner">
         <h1>Display Pokemon</h1>
         <h3>Choose a Pokemon and see the stats</h3>
+        <form>
+            <label> Search a pokemon:
+            <input id="pokemon-search" type="text" placeholder="pikachu"/>
+            <button type="submit">Submit</button>
+            </label>
+        </form>
     </header>
     <main role = "main">
         <div class="container">       
-            <form>
-                <label> Choose a pokemon:
-                <input id="pokemon-search" type="text"/>
-                <button type="submit">Submit</button>
-                </label>
-            </form>
             <div class="results hidden">
-                <div class="row"></div>
+                <div class="row homepage"></div>
+                <div class="row poke-page"></div>   
             </div>
-        </div>     
+        </div> 
     </main>
     <script src="index.js"></script>
 </body>

@@ -10,7 +10,7 @@ function getPokemon() {
 }
 
 function getSpecificPokemon(pokemon) {
-  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
+  fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`)
     .then(handleErrors)
     .then(response => response.json())
     .then(responseJson => 
@@ -30,32 +30,60 @@ function homepage(responseJson) {
   console.log(responseJson);
   let poke = responseJson.results;
   for (let i=0; i < poke.length; i++){
-    $('.row').append(`<div class="col-3">
+    $('.homepage').append(`<div class="col-3">
       <div class="box"><button type="button" name="${poke[i].name}">${poke[i].name}</button></div>
     </div>`);
   }
   //display the results section
   $('.results').removeClass('hidden');
   $('button').click(function(){
-    let pokemon = $(this).attr('name');
-    getSpecificPokemon(pokemon);
+    if(this.type === 'button'){
+      let pokemon = $(this).attr('name');
+      getSpecificPokemon(pokemon);
+    }
   });
 }
 
 function displayPokemon(responseJson){
   console.log(responseJson);
-  $('.row').empty();
-  $('.row').append(`<p>${responseJson.name}</p>`);
+  clearPage();
+  $('.poke-page').append(`<h2>${responseJson.name}</h2><div class="col-6">
+    <div class="img">img placeholder</div>
+  </div>
+  <div class="col-6">
+    <div class="abilities"><h4>Abilities</h4></div>
+  </div>`);
+  for(let i=0; i<responseJson.abilities.length; i++){
+      $('.abilities').append(`<p>${responseJson.abilities[i].ability.name}</p>`
+      );
+    }
+    $('.poke-page').append(`<button type="button" name="back">Back</button>`);
+    watchBackButton();
 }
 
-// function watchForm() {
-//   $('form').submit(event => {
-//     let pokemon = $('#pokemon-search').val();
-//     event.preventDefault();
-//     getPokemon(pokemon);
-//      $('#pokemon-search, textarea').val('');
-//   });
-// }
+function watchForm() {
+  $('form').submit(event => {
+    let pokemon = $('#pokemon-search').val();
+    event.preventDefault();
+    getSpecificPokemon(pokemon);
+     $('#pokemon-search, textarea').val('');
+  });
+}
 
+function watchBackButton(){
+  $('button[name="back"]').click(function(){
+    clearPage();
+    getPokemon();
+  });
+}
 
-$(getPokemon);
+function clearPage(){
+  $('.row').empty();
+}
+
+function handlePages(){
+  getPokemon();
+  watchForm();
+}
+
+handlePages();
