@@ -4,6 +4,7 @@
 
 body {
   font-family: 'Roboto', sans-serif;
+  background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png");
 }
 
 .container, .row, header {
@@ -21,7 +22,6 @@ body {
   margin-top: 20px;
 }
 
-/* Clearfix */
 .row::before,
 .row::after {
   display: table;
@@ -53,20 +53,21 @@ body {
   }
 }
 
-.abilities{
-  background-color: blue;
-}
-
-.moves{
-  background-color: red;
-}
-
 header, h2, .name{
   text-align: center;
 }
 
+header{
+  padding: 20px;
+}
+
 .box{
   padding: 1.04166666%;
+  width: 100%;
+}
+
+.poke-card-button{
+  width: 100%;
 }
 
 p, h4{
@@ -75,6 +76,43 @@ p, h4{
 }
 
 h4{
-  padding-top: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.img{
+  height: 100%;
+  width: 100%; 
+}
+
+.logo{
+  max-width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.right{
+  background-color: #30a7d7;
+  border-radius: 10px;
   padding-bottom: 20px;
+  padding-top: 20px;
+  height: 100%;
+}
+
+.left{
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
+.col-3{
+  text-align: center;
+}
+
+.col-6{
+  height: 100%;
+}
+
+.poke-card{
+  height: 50px;
+  width: 50px;
 }

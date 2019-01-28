@@ -31,7 +31,8 @@ function homepage(responseJson) {
   let poke = responseJson.results;
   for (let i=0; i < poke.length; i++){
     $('.homepage').append(`<div class="col-3">
-      <div class="box"><button type="button" name="${poke[i].name}">${poke[i].name}</button></div>
+      <div class="box">
+      <button type="button" class="poke-card-button" name="${poke[i].name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png""><br>${poke[i].name}</button></div>
     </div>`);
   }
   //display the results section
@@ -47,16 +48,24 @@ function homepage(responseJson) {
 function displayPokemon(responseJson){
   console.log(responseJson);
   clearPage();
-  $('.poke-page').append(`<h2>${responseJson.name}</h2><div class="col-6">
-    <div class="img">img placeholder</div>
-  </div>
-  <div class="col-6">
+  $('.poke-page').append(`<h2>${responseJson.name}</h2><div class="col-6 left">
+    <img class="img" src="https://pokeres.bastionbot.org/images/pokemon/${responseJson.id}.png"></div>
+  <div class="col-6 right">
     <div class="abilities"><h4>Abilities</h4></div>
+    <div class="stats"><h4>Stats</h4></div>
+    <div class="height"><h4>Height</h4></div>
+    <div class="weight"><h4>Weight</h4></div>
   </div>`);
   for(let i=0; i<responseJson.abilities.length; i++){
       $('.abilities').append(`<p>${responseJson.abilities[i].ability.name}</p>`
       );
     }
+    for(let i=0; i<responseJson.stats.length; i++){
+      $('.stats').append(`<p>${responseJson.stats[i].stat.name}</p>`
+      );
+    }
+    $('.height').append(`<p>${responseJson.height}</p>`);
+    $('.weight').append(`<p>${responseJson.weight}</p>`);
     $('.poke-page').append(`<button type="button" name="back">Back</button>`);
     watchBackButton();
 }
