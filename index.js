@@ -5,7 +5,7 @@ function getPokemon() {
     .then(handleErrors)
     .then(response => response.json())
     .then(responseJson => 
-      homepage(responseJson))
+      displayHomepage(responseJson))
     .catch(error => alert(error));
 }
 
@@ -26,7 +26,7 @@ function handleErrors(response) {
 }
 
 
-function homepage(responseJson) {
+function displayHomepage(responseJson) {
   console.log(responseJson);
   let poke = responseJson.results;
   for (let i=0; i < poke.length; i++){
@@ -53,8 +53,7 @@ function displayPokemon(responseJson){
   <div class="col-6 right">
     <div class="abilities"><h4>Abilities</h4></div>
     <div class="stats"><h4>Stats</h4></div>
-    <div class="height"><h4>Height</h4></div>
-    <div class="weight"><h4>Weight</h4></div>
+    <div class="types"><h4>Types</h4></div>
   </div>`);
   for(let i=0; i<responseJson.abilities.length; i++){
       $('.abilities').append(`<p>${responseJson.abilities[i].ability.name}</p>`
@@ -64,8 +63,10 @@ function displayPokemon(responseJson){
       $('.stats').append(`<p>${responseJson.stats[i].stat.name}</p>`
       );
     }
-    $('.height').append(`<p>${responseJson.height}</p>`);
-    $('.weight').append(`<p>${responseJson.weight}</p>`);
+    for(let i=0; i<responseJson.types.length; i++){
+      $('.types').append(`<p>${responseJson.types[i].type.name}</p>`
+      );
+    }
     $('.poke-page').append(`<button type="button" name="back">Back</button>`);
     watchBackButton();
 }
@@ -90,9 +91,9 @@ function clearPage(){
   $('.row').empty();
 }
 
-function handlePages(){
+function handleApp(){
   getPokemon();
   watchForm();
 }
 
-handlePages();
+handleApp();
