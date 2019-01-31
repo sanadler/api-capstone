@@ -2,6 +2,14 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'pokemon';
+  src: url('pokemon_solid-webfont.woff2') format('woff2'),
+       url('pokemon_solid-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
 body {
   font-family: 'Roboto', sans-serif;
   background-image: url("https://assets.pokemon.com/static2/_ui/img/chrome/container_bg.png");
@@ -22,18 +30,13 @@ body {
   margin-top: 20px;
 }
 
-.row::before,
-.row::after {
-  display: table;
-  content: '';
-}
-
-.row::after {
-  clear: both;
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  word-wrap: break-word;
 }
 
 .col-3, .col-6 {
-  float: left;
   padding-left: 1.04166666%;
   padding-right: 1.04166666%;
 }
@@ -59,6 +62,16 @@ header, h2, .name{
 
 header{
   padding: 20px;
+}
+
+h1,h2,h3,h4,h5,h6, label{
+  font-family: 'pokemon';
+  letter-spacing: 3px;
+}
+
+button{
+  font-family: 'pokemon';
+  letter-spacing: 3px;
 }
 
 .box{
@@ -87,6 +100,10 @@ h4{
   padding-bottom: 10px;
 }
 
+h2{
+  width: 100%;
+}
+
 .img{
   height: 100%;
   width: 100%; 
@@ -101,8 +118,7 @@ h4{
 .right{
   background-color: #30a7d7;
   border-radius: 10px;
-  padding-bottom: 20px;
-  padding-top: 20px;
+  padding: 20px;
   height: 100%;
 }
 
@@ -115,11 +131,32 @@ h4{
   text-align: center;
 }
 
-.col-6{
-  height: 100%;
-}
-
 .poke-card{
   height: 50px;
   width: 50px;
 }
+
+.types button{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  font-family: 'Roboto', sans-serif;
+  letter-spacing: 0;
+  padding: 7px 20px;
+  width: 80px;
+}
+
+button[type="submit"], button[name="back"] {
+    background-color: #FFCB05;
+    border: 4px solid #3466AF;
+    color: black;
+    padding: 7px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input{
+  padding: 8px;
+}
+
