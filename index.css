@@ -80,7 +80,7 @@ button{
   height: 200px;
 }
 
-.poke-card-button{
+button[name="poke-card"]{
   width: 100%;
   font-size: 16pt;
   height: 100%;
@@ -160,3 +160,6 @@ input{
   padding: 8px;
 }
 
+button[name="next"]{
+  float: right;
+}

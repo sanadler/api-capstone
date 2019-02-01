@@ -1,7 +1,6 @@
 'use strict';
 
 //add next/previous buttons
-//catch missing pictures and put pokeball in place
 function getPokemon() {
   fetch(`https://pokeapi.co/api/v2/pokemon/`)
     .then(handleErrors)
@@ -9,6 +8,24 @@ function getPokemon() {
     .then(responseJson => 
       displayHomepage(responseJson))
     .catch(error => alert(error));
+}
+
+function getPreviousPage(previous){
+  fetch(`${previous}`)
+  .then(handleErrors)
+  .then(response => response.json())
+  .then(responseJson => 
+    displayHomepage(responseJson))
+  .catch(error => alert(error));
+}
+
+function getNextPage(next){
+  fetch(`${next}`)
+  .then(handleErrors)
+  .then(response => response.json())
+  .then(responseJson => 
+    displayHomepage(responseJson))
+  .catch(error => alert(error));
 }
 
 function getSpecificPokemon(pokemon) {
@@ -43,16 +60,29 @@ function displayHomepage(responseJson) {
   for (let i=0; i < poke.length; i++){
     $('.grid-page').append(`<div class="col-3">
       <div class="box">
-      <button type="button" class="poke-card-button" name="${poke[i].name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png"><br>${poke[i].name}</button></div>
+      <button type="button" name="poke-card" value="${poke[i].name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].name}</button></div>
     </div>`);
   }
-  //if next != null .. add button and go to the next page (same with previous)
-  //display the results section
+  if(responseJson.previous != null){
+    $('.prev-next').append(`<div class="col-6"><button type="button" name="previous">Previous</button></div>`);
+  }
+  if(responseJson.next != null){
+    $('.prev-next').append(`<div class="col-6"><button type="button" name="next">Next</button></div>`);
+  }
+
   $('.results').removeClass('hidden');
   $('button').click(function(){
-    if(this.type === 'button'){
-      let pokemon = $(this).attr('name');
+    if(this.name === 'poke-card'){
+      let pokemon = $(this).attr('value');
       getSpecificPokemon(pokemon);
+    }
+    else if(this.name === 'next'){
+      clearPage();
+      getNextPage(responseJson.next);
+    }
+    else if(this.name === 'previous'){
+      clearPage();
+      getPreviousPage(responseJson.previous);
     }
   });
 }
@@ -66,14 +96,14 @@ function displayPokemonByType(responseJson) {
     console.log(id);
     $('.grid-page').append(`<div class="col-3">
       <div class="box">
-      <button type="button" class="poke-card-button" name="${poke[i].pokemon.name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png"><br>${poke[i].pokemon.name}</button></div>
+      <button type="button" name="poke-card" value="${poke[i].pokemon.name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].pokemon.name}</button></div>
     </div>`);
   }
   //display the results section
   $('.results').removeClass('hidden');
   $('button').click(function(){
-    if(this.type === 'button'){
-      let pokemon = $(this).attr('name');
+    if(this.name === 'poke-card'){
+      let pokemon = $(this).attr('value');
       getSpecificPokemon(pokemon);
     }
   });
@@ -85,7 +115,7 @@ function displayPokemon(responseJson){
   $('.poke-page').append(`<h2>${responseJson.name}</h2>
   <div class="col-6">
     <div class="left">
-    <img class="img" src="https://pokeres.bastionbot.org/images/pokemon/${responseJson.id}.png"></div></div>
+    <img class="img" src="https://pokeres.bastionbot.org/images/pokemon/${responseJson.id}.png" onerror="this.src='poke-ball.png'"></div></div>
   <div class="col-6">
     <div class="right">
       <div class="abilities"><h4>Abilities</h4></div>
