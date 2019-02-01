@@ -1,5 +1,7 @@
 'use strict';
 
+//add next/previous buttons
+//catch missing pictures and put pokeball in place
 function getPokemon() {
   fetch(`https://pokeapi.co/api/v2/pokemon/`)
     .then(handleErrors)
@@ -44,6 +46,7 @@ function displayHomepage(responseJson) {
       <button type="button" class="poke-card-button" name="${poke[i].name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png"><br>${poke[i].name}</button></div>
     </div>`);
   }
+  //if next != null .. add button and go to the next page (same with previous)
   //display the results section
   $('.results').removeClass('hidden');
   $('button').click(function(){
