@@ -56,7 +56,7 @@ body {
   }
 }
 
-header, h2, .name{
+header, h2, .name, h5{
   text-align: center;
 }
 
@@ -100,7 +100,7 @@ h4{
   padding-bottom: 10px;
 }
 
-h2{
+h2, h5{
   width: 100%;
 }
 

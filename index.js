@@ -88,8 +88,9 @@ function displayHomepage(responseJson) {
 }
 
 function displayPokemonByType(responseJson) {
-  console.log(responseJson);
+  console.log(responseJson.name);
   let poke = responseJson.pokemon;
+  $('.grid-page').append(`<h5>Pokemon with type ${responseJson.name}</h5>`);
   for (let i=0; i < poke.length; i++){
     let url = `${poke[i].pokemon.url}`.split('/');
     let id = url.pop() || url.pop();
