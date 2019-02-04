@@ -34,7 +34,7 @@ HTML, CSS, JavaScript, jQuery
 
 ### Demo
 
-<a href="https://sanadler.github.io/api-capstone/">Live Demo</a>
+<a href="https://sanadler.github.io/pokedex-api-capstone/">Live Demo</a>
 
 ### Author
 
