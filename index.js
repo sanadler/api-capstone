@@ -1,6 +1,10 @@
 'use strict';
 
-//add next/previous buttons
+//add alt text
+//add meta data
+//lang
+//fix type button wrap
+//fix next previous buttons on mobile
 function getPokemon() {
   fetch(`https://pokeapi.co/api/v2/pokemon/`)
     .then(handleErrors)
@@ -144,6 +148,7 @@ function watchForm() {
   $('form').submit(event => {
     let pokemon = $('#pokemon-search').val();
     event.preventDefault();
+    pokemon = pokemon.toLowerCase();
     getSpecificPokemon(pokemon);
      $('#pokemon-search, textarea').val('');
   });
