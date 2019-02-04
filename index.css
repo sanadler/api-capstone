@@ -54,6 +54,9 @@ body {
   .col-3 {
     width: 25%;
   }
+  button[name="next"]{
+    float: right;
+  }
 }
 
 header, h2, .name, h5{
@@ -158,8 +161,4 @@ button[type="submit"], button[name="back"] {
 
 input{
   padding: 8px;
-}
-
-button[name="next"]{
-  float: right;
 }

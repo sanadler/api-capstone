@@ -1,10 +1,8 @@
 'use strict';
 
-//add alt text
 //add meta data
 //lang
 //fix type button wrap
-//fix next previous buttons on mobile
 function getPokemon() {
   fetch(`https://pokeapi.co/api/v2/pokemon/`)
     .then(handleErrors)
@@ -64,7 +62,7 @@ function displayHomepage(responseJson) {
   for (let i=0; i < poke.length; i++){
     $('.grid-page').append(`<div class="col-3">
       <div class="box">
-      <button type="button" name="poke-card" value="${poke[i].name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].name}</button></div>
+      <button type="button" name="poke-card" value="${poke[i].name}"><img class="poke-card" alt="picture of ${poke[i].name}" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].name}</button></div>
     </div>`);
   }
   if(responseJson.previous != null){
@@ -101,7 +99,7 @@ function displayPokemonByType(responseJson) {
     console.log(id);
     $('.grid-page').append(`<div class="col-3">
       <div class="box">
-      <button type="button" name="poke-card" value="${poke[i].pokemon.name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].pokemon.name}</button></div>
+      <button type="button" name="poke-card" alt="picture of ${poke[i].pokemon.name}" value="${poke[i].pokemon.name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].pokemon.name}</button></div>
     </div>`);
   }
   //display the results section
@@ -120,7 +118,7 @@ function displayPokemon(responseJson){
   $('.poke-page').append(`<h2>${responseJson.name}</h2>
   <div class="col-6">
     <div class="left">
-    <img class="img" src="https://pokeres.bastionbot.org/images/pokemon/${responseJson.id}.png" onerror="this.src='poke-ball.png'"></div></div>
+    <img class="img" alt="picture of ${responseJson.name}" src="https://pokeres.bastionbot.org/images/pokemon/${responseJson.id}.png" onerror="this.src='poke-ball.png'"></div></div>
   <div class="col-6">
     <div class="right">
       <div class="abilities"><h4>Abilities</h4></div>
