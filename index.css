@@ -145,7 +145,7 @@ h2, h5{
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0;
   padding: 7px 20px;
-  width: 80px;
+  width: 30%;
 }
 
 button[type="submit"], button[name="back"] {

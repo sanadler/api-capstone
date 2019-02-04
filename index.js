@@ -1,8 +1,8 @@
 'use strict';
 
-//add meta data
-//lang
-//fix type button wrap
+//how to fix submit button on safari ??
+//buttons on mobile
+
 function getPokemon() {
   fetch(`https://pokeapi.co/api/v2/pokemon/`)
     .then(handleErrors)
@@ -60,9 +60,11 @@ function displayHomepage(responseJson) {
   console.log(responseJson);
   let poke = responseJson.results;
   for (let i=0; i < poke.length; i++){
+    let url = `${poke[i].url}`.split('/');
+    let id = url.pop() || url.pop();
     $('.grid-page').append(`<div class="col-3">
       <div class="box">
-      <button type="button" name="poke-card" value="${poke[i].name}"><img class="poke-card" alt="picture of ${poke[i].name}" src="https://pokeres.bastionbot.org/images/pokemon/${i+1}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].name}</button></div>
+      <button type="button" name="poke-card" value="${poke[i].name}"><img class="poke-card" alt="picture of ${poke[i].name}" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].name}</button></div>
     </div>`);
   }
   if(responseJson.previous != null){
@@ -96,7 +98,6 @@ function displayPokemonByType(responseJson) {
   for (let i=0; i < poke.length; i++){
     let url = `${poke[i].pokemon.url}`.split('/');
     let id = url.pop() || url.pop();
-    console.log(id);
     $('.grid-page').append(`<div class="col-3">
       <div class="box">
       <button type="button" name="poke-card" alt="picture of ${poke[i].pokemon.name}" value="${poke[i].pokemon.name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].pokemon.name}</button></div>
