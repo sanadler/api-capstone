@@ -61,7 +61,6 @@ function handleErrors(response) {
 }
 
 function displayHomepage(responseJson) {
-  console.log(responseJson);
   let poke = responseJson.results;
   //goes through all the pokemon, pulls the id from the URL and uses it to attach the correct image
   for (let i=0; i < poke.length; i++){
@@ -77,6 +76,9 @@ function displayHomepage(responseJson) {
   if(responseJson.previous != null){
     $('.prev-next').append(`<div class="col-6"><button type="button" name="previous">Previous</button></div>`);
   }
+  else{
+    $('.prev-next').append(`<div class="col-6 placeholder"></div>`);
+  }
 
    //if you are on the last page, the next button won't pop up .. otherwise adds a button to get to the next page of pokemon
   if(responseJson.next != null){
@@ -85,25 +87,11 @@ function displayHomepage(responseJson) {
  //displays results
   $('.results').removeClass('hidden');
   //watches all the buttons, performs correct ask once button is clicked
-  $('button').click(function(){
-    if(this.name === 'poke-card'){
-      let pokemon = $(this).attr('value');
-      getSpecificPokemon(pokemon);
-    }
-    else if(this.name === 'next'){
-      clearPage();
-      getNextPage(responseJson.next);
-    }
-    else if(this.name === 'previous'){
-      clearPage();
-      getPreviousPage(responseJson.previous);
-    }
-  });
+  watchButtons(responseJson);
 }
 
 //displays pokemon the same way as the homepage but adds a header saying which type is being displayed
 function displayPokemonByType(responseJson) {
-  console.log(responseJson.name);
   let poke = responseJson.pokemon;
   $('.grid-page').append(`<h5>Pokemon with type ${responseJson.name}</h5>`);
   for (let i=0; i < poke.length; i++){
@@ -114,19 +102,14 @@ function displayPokemonByType(responseJson) {
       <button type="button" name="poke-card" alt="picture of ${poke[i].pokemon.name}" value="${poke[i].pokemon.name}"><img class="poke-card" src="https://pokeres.bastionbot.org/images/pokemon/${id}.png" onerror="this.src='poke-ball.png'"><br>${poke[i].pokemon.name}</button></div>
     </div>`);
   }
+  $('.grid-page').append(`<div class="box"><button type="button" name="back">Homepage</button></div>`);
   //display the results section
   $('.results').removeClass('hidden');
-  $('button').click(function(){
-    if(this.name === 'poke-card'){
-      let pokemon = $(this).attr('value');
-      getSpecificPokemon(pokemon);
-    }
-  });
+  watchButtons(responseJson);
 }
 
 //displays the stats of the specific pokemon selected
 function displayPokemon(responseJson){
-  console.log(responseJson);
   clearPage();
   $('.poke-page').append(`<h2>${responseJson.name}</h2>
   <div class="col-6">
@@ -152,7 +135,7 @@ function displayPokemon(responseJson){
       );
     }
     $('.poke-page').append(`<button type="button" name="back">Homepage</button>`);
-    watchPokePageButtons();
+    watchButtons(responseJson);
 }
 
 //watches the form, if a pokemon is searched for the app displays the stats of the specific pokemon
@@ -166,9 +149,8 @@ function watchForm() {
   });
 }
 
-//watches the buttons on the pokemon page of stats. if homepage button is clicked, you are sent to homepage
-//if a type button is clicked you are sent to page of pokemon of that type
-function watchPokePageButtons(){
+//watches all the buttons on every view and carries out the action
+function watchButtons(responseJson){
   $('button').click(function(){
     if(this.name === 'back'){
       clearPage();
@@ -178,6 +160,18 @@ function watchPokePageButtons(){
       let type = this.value;
       clearPage();
       getPokemonByType(type);
+    }
+    else if(this.name === 'poke-card'){
+      let pokemon = $(this).attr('value');
+      getSpecificPokemon(pokemon);
+    }
+    else if(this.name === 'next'){
+      clearPage();
+      getNextPage(responseJson.next);
+    }
+    else if(this.name === 'previous'){
+      clearPage();
+      getPreviousPage(responseJson.previous);
     }
   });
 }

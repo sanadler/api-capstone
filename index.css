@@ -22,7 +22,7 @@ body {
   margin: 0 auto;
 }
 
-.hidden {
+.hidden, .hidden-next, .hidden-prev {
   display: none;
 }
 
