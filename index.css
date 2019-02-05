@@ -26,7 +26,7 @@ body {
   display: none;
 }
 
-.results{
+.results {
   margin-top: 20px;
 }
 
@@ -59,88 +59,88 @@ body {
   }
 }
 
-header, h2, .name, h5{
+header, h2, .name, h5 {
   text-align: center;
 }
 
-header{
+header {
   padding: 20px;
 }
 
-h1,h2,h3,h4,h5,h6, label{
+h1,h2,h3,h4,h5,h6, label {
   font-family: 'pokemon';
   letter-spacing: 3px;
 }
 
-button{
+button {
   font-family: 'pokemon';
   letter-spacing: 3px;
   background-color: rgb(240, 240, 240);
 }
 
-.box{
+.box {
   padding: 1.04166666%;
   width: 100%;
   height: 200px;
 }
 
-button[name="poke-card"]{
+button[name="poke-card"] {
   width: 100%;
   font-size: 16pt;
   height: 100%;
 }
 
-button:hover{
+button:hover {
   background-color: darkgrey;
 }
 
-p, h4{
+p, h4 {
   margin: 0;
   padding-left: 5px;
 }
 
-h4{
+h4 {
   padding-top: 10px;
   padding-bottom: 10px;
 }
 
-h2, h5{
+h2, h5 {
   width: 100%;
 }
 
-.img{
+.img {
   height: 100%;
   width: 100%; 
 }
 
-.logo{
+.logo {
   max-width: 40%;
   margin-left: auto;
   margin-right: auto;
 }
 
-.right{
+.right {
   background-color: #30a7d7;
   border-radius: 10px;
   padding: 20px;
   height: 100%;
 }
 
-.left{
+.left {
   background-color: lightgrey;
   border-radius: 10px;
 }
 
-.col-3{
+.col-3 {
   text-align: center;
 }
 
-.poke-card{
+.poke-card {
   height: 50px;
   width: 50px;
 }
 
-.types button{
+.types button {
   margin-top: 5px;
   margin-bottom: 5px;
   font-family: 'Roboto', sans-serif;
@@ -160,6 +160,6 @@ button[type="submit"], button[name="back"] {
     font-size: 16px;
 }
 
-input{
+input {
   padding: 8px;
 }
