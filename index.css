@@ -75,6 +75,7 @@ h1,h2,h3,h4,h5,h6, label{
 button{
   font-family: 'pokemon';
   letter-spacing: 3px;
+  background-color: rgb(240, 240, 240);
 }
 
 .box{
@@ -145,7 +146,7 @@ h2, h5{
   font-family: 'Roboto', sans-serif;
   letter-spacing: 0;
   padding: 7px 20px;
-  width: 30%;
+  width: 35%;
 }
 
 button[type="submit"], button[name="back"] {

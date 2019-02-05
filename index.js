@@ -1,8 +1,5 @@
 'use strict';
 
-//how to fix submit button on safari ??
-//buttons on mobile
-
 //fetches all pokemon from the api
 function getPokemon() {
   fetch(`https://pokeapi.co/api/v2/pokemon/`)
